@@ -19,6 +19,7 @@
   "license": "MIT",
   "readmeFilename": "README.md",
   "dependencies": {
-    "bitcoinjs-lib": "1.0.0"
+    "bitcoinjs-lib": "1.0.0",
+    "bitcore": "0.1.26"
   }
 }
