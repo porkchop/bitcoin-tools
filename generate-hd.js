@@ -43,6 +43,15 @@ else
 		console.log();
 	}
 
+  function bitcoreWIF(hkey) {
+    if(!hkey.eckey.private) return null;
+
+    var priv = hkey.eckey.private.toString('hex');
+    var buf = new bitcore.Buffer(priv, 'hex');
+    var privkey = new bitcore.PrivateKey(bitcore.networks.livenet.privKeyVersion, buf, true);
+    return privkey.as('base58');
+  }
+
 	function viaBitcore() {
 		console.log('Via bitcore...');
 		console.log('--------------');
@@ -61,7 +70,7 @@ else
 		for( var i=1; i<=number; i++ )
 		{
 			var derivedPrivate = hkey.derive( 'm/' + i );
-			console.log( 'Key: ' + derivedPrivate.eckey.private.toString('hex') + '   Addr: ' + Address.fromPubKey(derivedPrivate.eckey.public));
+			console.log( 'Key: ' + bitcoreWIF(derivedPrivate) + '   Addr: ' + Address.fromPubKey(derivedPrivate.eckey.public));
   	}
 		console.log();
 
